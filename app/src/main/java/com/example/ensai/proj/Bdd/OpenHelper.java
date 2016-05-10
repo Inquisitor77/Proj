@@ -20,9 +20,11 @@ public class OpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE Evenement (idEvenement INTEGER PRIMARY KEY, nom TEXT, description TEXT, date INTEGER, heure INTEGER)");
-        db.execSQL("CREATE TABLE Contact (idContact INTEGER PRIMARY KEY, idEvenement INTEGER FOREIGN KEY REFERENCES Evenement, idTelephone INTEGER)");
-        db.execSQL("CREATE TABLE SmsAuto (idSms INTEGER PRIMARY KEY, idEvenement INTEGER FOREIGN KEY REFERENCES Evenement, texte TEXT, date INTEGER, heure INTEGER)");
+        db.execSQL("CREATE TABLE Evenement (idEvenement INTEGER PRIMARY KEY, nom TEXT, description TEXT, mYear INTEGER, mMonth INTEGER, mDay INTEGER, heure INTEGER, minutes INTEGER)");
+        db.execSQL("CREATE TABLE Contact (idContact INTEGER PRIMARY KEY, idEvenement INTEGER FOREIGN KEY REFERENCES Evenement," +
+                " idTelephone INTEGER)");
+        db.execSQL("CREATE TABLE SmsAuto (idSms INTEGER PRIMARY KEY, idEvenement INTEGER FOREIGN KEY REFERENCES Evenement," +
+                " texte TEXT, mYear INTEGER, mMonth INTEGER, mDay INTEGER, heure INTEGER, minutes INTEGER)");
 
     }
 

@@ -1,6 +1,7 @@
 package com.example.ensai.proj.Bdd;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
@@ -19,26 +20,20 @@ import java.util.Date;
 public class DAO {
 
 
-    /**
-     * Méthode pour insérer un Evenement en bdd
-     *
-     * @param context
-     * @param nom
-     * @param description
-     * @param date
-     * @param heure
-     */
-    public static void insertEvenement(Context context, String nom, String description, Date date, Time heure){
+    public static void insertEvenement(Context context, String nom, String description, int mYear, int mMonth, int mDay, int heure, int minutes){
 
         SQLiteOpenHelper helper = new OpenHelper(context);
         SQLiteDatabase base = helper.getWritableDatabase();
 
         SQLiteStatement rqt = base.compileStatement("INSERT INTO Evenement " +
-                "(nom, description, date, heure) VALUES(?,?,?,?)");
+                "(nom, description, mYear, mMonth, mDayn, heure, minutes) VALUES(?,?,?,?,?,?,?)");
         rqt.bindString(1,nom);
         rqt.bindString(2, description);
-        rqt.bindLong(3, Long.parseLong(date.toString()));
-        rqt.bindLong(4, Long.parseLong(heure.toString()));
+        rqt.bindLong(3, mYear);
+        rqt.bindLong(4, mMonth);
+        rqt.bindLong(5, mDay);
+        rqt.bindLong(6, heure);
+        rqt.bindLong(7, minutes);
 
         rqt.execute();
         base.close();
@@ -70,27 +65,21 @@ public class DAO {
 
     }
 
-    /**
-     * Méthode pour insérer un sms en bdd
-     *
-     * @param context
-     * @param idEvenement
-     * @param texte
-     * @param date
-     * @param heure
-     */
 
-    public static void insertSmsAuto(Context context, Long idEvenement, String texte, Date date, Time heure){
+    public static void insertSmsAuto(Context context, Long idEvenement, String texte, int mYear, int mMonth, int mDay, int heure, int minutes){
 
         SQLiteOpenHelper helper = new OpenHelper(context);
         SQLiteDatabase base = helper.getWritableDatabase();
 
         SQLiteStatement rqt = base.compileStatement("INSERT INTO SmsAuto " +
-                "(idEvenement, texte, date, heure) VALUES(?,?,?,?)");
+                "(idEvenement, texte, mYear, mMonth, mDayn, heure, minutes) VALUES(?,?,?,?,?,?,?)");
         rqt.bindLong(1,idEvenement);
         rqt.bindString(2, texte);
-        rqt.bindLong(3, Long.parseLong(date.toString()));
-        rqt.bindLong(4, Long.parseLong(heure.toString()));
+        rqt.bindLong(3, mYear);
+        rqt.bindLong(4, mMonth);
+        rqt.bindLong(5, mDay);
+        rqt.bindLong(6, heure);
+        rqt.bindLong(7, minutes);
 
         rqt.execute();
         base.close();
@@ -105,32 +94,109 @@ public class DAO {
      * @param context
      * @return
      */
-    public static ArrayList<Evenement> selectEvenement(Context context) {
+    public static ArrayList<Evenement> selectListeEvenement(Context context) {
+
+        ArrayList<Evenement> liste = new ArrayList<Evenement>();
 
         SQLiteOpenHelper helper = new OpenHelper(context);
         SQLiteDatabase base = helper.getReadableDatabase();
 
-        SQLiteStatement rqt = base.compileStatement("SELECT * FROM Evenement");
+        Cursor curseur = base.rawQuery("SELECT * FROM Evenement",
+                new String[]{});
 
-        rqt.execute();
-
-
-
+        int nblignes = curseur.getCount();
+        while (curseur.moveToNext()){
+            Long idEvenement = curseur.getLong(0);
+            String nom = curseur.getString(1);
+            String description = curseur.getString(2);
+            int mYear = curseur.getInt(3);
+            int mMonth = curseur.getInt(3);
+            int mDay = curseur.getInt(3);
+            int heure = curseur.getInt(3);
+            int minutes = curseur.getInt(3);
+            Evenement elem = new Evenement(idEvenement,nom,description,mYear,mMonth,mDay,heure,minutes);
+            liste.add(elem);
+        }
 
         base.close();
         helper.close();
 
-        return null;
+        return liste;
     }
 
 
-    public static ArrayList<Contact> selectContact(Context context, Long idEvenement) {
-        return null;
+    public static ArrayList<Contact> selectListeContact(Context context, Long idEvenement) {
+
+        ArrayList<Contact> liste = new ArrayList<Contact>();
+
+        SQLiteOpenHelper helper = new OpenHelper(context);
+        SQLiteDatabase base = helper.getReadableDatabase();
+
+        Cursor curseur = base.rawQuery("SELECT * FROM Contact WHERE idEvenement =?"
+                , new String[] {idEvenement.toString() });
+
+        int nblignes = curseur.getCount();
+        while (curseur.moveToNext()){
+            Long idContact = curseur.getLong(0);
+            //pas besoin de l'idEvenement, on l'a dans les parametre de la fonction
+            Long idTelephone = curseur.getLong(2);
+
+            Contact elem = new Contact(idContact,idEvenement,idTelephone);
+            liste.add(elem);
+        }
+
+        base.close();
+        helper.close();
+
+        return liste;
     }
 
 
-    public static ArrayList<SmsAuto> selectSmsAuto(Context context, Long idEvenement) {
-        return null;
+    public static ArrayList<SmsAuto> selectListeSmsAuto(Context context, Long idEvenement) {
+
+        ArrayList<SmsAuto> liste = new ArrayList<SmsAuto>();
+
+        SQLiteOpenHelper helper = new OpenHelper(context);
+        SQLiteDatabase base = helper.getReadableDatabase();
+
+        Cursor curseur = base.rawQuery("SELECT * FROM SmsAuto WHERE idEvenement =?"
+                , new String[] {idEvenement.toString() });
+
+        int nblignes = curseur.getCount();
+        while (curseur.moveToNext()){
+            Long idSms = curseur.getLong(0);
+            //idEvenement
+            String text = curseur.getString(2);
+            int mYear = curseur.getInt(3);
+            int mMonth = curseur.getInt(3);
+            int mDay = curseur.getInt(3);
+            int heure = curseur.getInt(3);
+            int minutes = curseur.getInt(3);
+
+            SmsAuto elem = new SmsAuto(idSms,idEvenement,text,mYear,mMonth,mDay,heure,minutes);
+            liste.add(elem);
+        }
+
+        base.close();
+        helper.close();
+
+        return liste;
+    }
+
+    public static void terminerEvenementBdd(Context context, Long idEvenement){
+
+        SQLiteOpenHelper helper = new OpenHelper(context);
+        SQLiteDatabase base = helper.getWritableDatabase();
+
+        base.rawQuery("DELETE FROM Contact WHERE idEvenement =?"
+                , new String[] {idEvenement.toString() });
+        base.rawQuery("DELETE FROM SmsAuto WHERE idEvenement =?"
+                , new String[]{idEvenement.toString()});
+        base.rawQuery("DELETE FROM Evenement WHERE idEvenement =?"
+                , new String[] {idEvenement.toString() });
+
+        base.close();
+        helper.close();
     }
 
 }

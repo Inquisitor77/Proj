@@ -11,15 +11,21 @@ public class Evenement {
     Long idEvenement;
     String nom;
     String description;
-    Date date;
-    Time heure;
+    int mYear;
+    int mMonth;
+    int mDay;
+    int heure;
+    int minutes;
 
-    public Evenement(Long idEvenement, String nom, String description, Date date, Time heure) {
+    public Evenement(Long idEvenement, String nom, String description, int mYear, int mMonth, int mDay, int heure, int minutes) {
         this.idEvenement = idEvenement;
         this.nom = nom;
         this.description = description;
-        this.date = date;
+        this.mYear = mYear;
+        this.mMonth = mMonth;
+        this.mDay = mDay;
         this.heure = heure;
+        this.minutes = minutes;
     }
 
     public Evenement() {
@@ -49,19 +55,43 @@ public class Evenement {
         this.description = description;
     }
 
-    public Date getDate() {
-        return date;
+    public int getmYear() {
+        return mYear;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setmYear(int mYear) {
+        this.mYear = mYear;
     }
 
-    public Time getHeure() {
+    public int getmMonth() {
+        return mMonth;
+    }
+
+    public void setmMonth(int mMonth) {
+        this.mMonth = mMonth;
+    }
+
+    public int getmDay() {
+        return mDay;
+    }
+
+    public void setmDay(int mDay) {
+        this.mDay = mDay;
+    }
+
+    public int getHeure() {
         return heure;
     }
 
-    public void setHeure(Time heure) {
+    public void setHeure(int heure) {
         this.heure = heure;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 }

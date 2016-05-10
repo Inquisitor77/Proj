@@ -14,15 +14,21 @@ public class SmsAuto {
     Long idSms;
     Long idEvenement;
     String texte;
-    Date date;
-    Time time;
+    int mYear;
+    int mMonth;
+    int mDay;
+    int heure;
+    int minutes;
 
-    public SmsAuto(Long idSms, Long idEvenement, String texte, Date date, Time time) {
+    public SmsAuto(Long idSms, Long idEvenement, String texte, int mYear, int mMonth, int mDay, int heure, int minutes) {
         this.idSms = idSms;
         this.idEvenement = idEvenement;
         this.texte = texte;
-        this.date = date;
-        this.time = time;
+        this.mYear = mYear;
+        this.mMonth = mMonth;
+        this.mDay = mDay;
+        this.heure = heure;
+        this.minutes = minutes;
     }
 
     public SmsAuto() {
@@ -52,19 +58,43 @@ public class SmsAuto {
         this.texte = texte;
     }
 
-    public Date getDate() {
-        return date;
+    public int getmYear() {
+        return mYear;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setmYear(int mYear) {
+        this.mYear = mYear;
     }
 
-    public Time getTime() {
-        return time;
+    public int getmMonth() {
+        return mMonth;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public void setmMonth(int mMonth) {
+        this.mMonth = mMonth;
+    }
+
+    public int getmDay() {
+        return mDay;
+    }
+
+    public void setmDay(int mDay) {
+        this.mDay = mDay;
+    }
+
+    public int getHeure() {
+        return heure;
+    }
+
+    public void setHeure(int heure) {
+        this.heure = heure;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 }
