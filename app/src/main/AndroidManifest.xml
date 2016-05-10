@@ -19,7 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Aide" />
-        <activity android:name=".AjoutPhase1"></activity>
+        <activity android:name=".AjoutPhase1" />
+        <activity android:name=".AjoutPhase2" />
+        <activity android:name=".Evenement" />
+        <activity android:name=".SelectionContacts" />
+        <activity android:name=".SmsAutomatiques" />
+        <activity android:name=".SmsManuel"></activity>
     </application>
 
 </manifest>
