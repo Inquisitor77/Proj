@@ -4,16 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class Main2Activity extends AppCompatActivity {
-//test bis bis
-    //blabla
-    //bla22222222
-    //bla3
-    //bla4
-    //bla5
-    //bla5
-    //bla6
 
-    //bla7
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
