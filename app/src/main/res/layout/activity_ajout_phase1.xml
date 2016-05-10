@@ -37,11 +37,11 @@
             android:layout_height="wrap_content"
             android:text="@string/date_even" />
 
-        <Button
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/date"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/choix_date"
-            android:onClick="Date" />
+            android:onClick="date"/>
 
     </LinearLayout>
 

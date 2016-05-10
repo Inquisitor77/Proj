@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">Chez Jo'</string>
-    <string name="nom_even">Nom de l'événement</string>
-    <string name="date_even">Date de l'événement</string>
+    <string name="app_name">Chez Jo</string>
+    <string name="nom_even">Nom de l evenement</string>
+    <string name="date_even">Date de l evenement</string>
     <string name="choix_date">Date</string>
-    <string name="descrip_even">Description de l'événement</string>
+    <string name="descrip_even">Description de l evenement</string>
     <string name="valid">Valider</string>
-    <string name="text_bouton1">Créer un évenement</string>
-    <string name="text_bouton2">Guide d'utilisation</string>
+    <string name="text_bouton1">Creer un evenement</string>
+    <string name="text_bouton2">Guide d utilisation</string>
     <string name="nom">Nom :   </string>
 
 
-    <string name="aide">Ceci est le manuel d'utilisation de l'application, au cas ou vous seriez pas très malin</string>
+    <string name="aide">Ceci est le manuel d utilisation de l application au cas ou vous seriez pas tres malin</string>
 
 </resources>
