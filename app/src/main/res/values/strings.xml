@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Chez Jo'</string>
+    <string name="text_bouton1">Créer un évenement</string>
+    <string name="text_bouton2">Guide d'utilisation</string>
+
+    <string name="aide">Ceci est le manuel d'utilisation de l'application, au cas ou vous seriez pas très malin</string>
+
 </resources>
