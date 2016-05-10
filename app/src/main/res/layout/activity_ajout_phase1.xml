@@ -41,7 +41,27 @@
             android:id="@+id/date"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="date"/>
+            android:onClick="date"
+            android:focusable="false"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/heure_even" />
+
+        <EditText
+            android:id="@+id/heure"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="heure"
+            android:focusable="false"/>
 
     </LinearLayout>
 

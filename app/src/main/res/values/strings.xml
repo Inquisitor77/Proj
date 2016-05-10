@@ -2,7 +2,7 @@
     <string name="app_name">Chez Jo</string>
     <string name="nom_even">Nom de l evenement</string>
     <string name="date_even">Date de l evenement</string>
-    <string name="choix_date">Date</string>
+    <string name="heure_even">Heure de l evenement</string>
     <string name="descrip_even">Description de l evenement</string>
     <string name="valid">Valider</string>
     <string name="text_bouton1">Creer un evenement</string>
