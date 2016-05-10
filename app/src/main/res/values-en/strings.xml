@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Chez Jo'</string>
+    <string name="nom_even">Event name</string>
+    <string name="date_even">Event date</string>
+    <string name="choix_date">Date</string>
+    <string name="descrip_even">Event description</string>
+    <string name="valid">Confirm</string>
 </resources>

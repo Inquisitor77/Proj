@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Chez Jo'</string>
+    <string name="nom_even">Nom de l'événement</string>
+    <string name="date_even">Date de l'événement</string>
+    <string name="choix_date">Date</string>
+    <string name="descrip_even">Description de l'événement</string>
+    <string name="valid">Valider</string>
     <string name="text_bouton1">Créer un évenement</string>
     <string name="text_bouton2">Guide d'utilisation</string>
 
