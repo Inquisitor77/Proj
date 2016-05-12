@@ -30,7 +30,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/bouton2"
-            android:text="@string/text_bouton2"/>
+            android:text="@string/text_bouton2"
+            android:onClick="test"/>
 
     </LinearLayout>
 

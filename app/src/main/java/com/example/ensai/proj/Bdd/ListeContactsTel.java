@@ -10,6 +10,7 @@ import android.provider.ContactsContract;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.ensai.proj.Elements.Contact;
 import com.example.ensai.proj.Elements.ContactTel;
 import com.example.ensai.proj.R;
 
@@ -20,10 +21,9 @@ import java.util.ArrayList;
  */
 public class ListeContactsTel extends ListActivity {
 
+    public static ArrayList<ContactTel> listeContactsTel = new ArrayList<ContactTel>();
 
-    public ArrayList<ContactTel> displayContacts() {
-
-        ArrayList<ContactTel> liste = new ArrayList<>();
+    public void onCreate() {
 
         ContentResolver cr = getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
@@ -41,15 +41,14 @@ public class ListeContactsTel extends ListActivity {
                             new String[]{id}, null);
                     while (pCur.moveToNext()) {
                         String tel = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        liste.add( new ContactTel(nom, tel));
+                        listeContactsTel.add( new ContactTel(nom, tel));
                     }
                     pCur.close();
                 }
             }
         }
-        return liste;
-    }
 
+    }
 
 
 
