@@ -2,6 +2,8 @@ package com.example.ensai.proj.Metier;
 
 import android.telephony.SmsManager;
 
+import com.example.ensai.proj.Elements.ContactTel;
+
 import java.util.ArrayList;
 
 /**
@@ -20,6 +22,25 @@ public class Sms {
 
             }
         return envoi;
+
+    }
+
+
+
+    public static ArrayList<ContactTel> envoiSmsGroupe(ArrayList<ContactTel> listeEnvoi, String texte){
+
+        ArrayList<ContactTel> listeErreur = new ArrayList<ContactTel>();
+        boolean validation;
+
+        for (int i = 0;  i<listeEnvoi.size(); i++ ){
+            validation = false;
+            validation = envoiSms(listeEnvoi.get(i).getNumero(), texte);
+            if (validation = false){
+                listeErreur.add(listeEnvoi.get(i));
+            }
+        }
+
+        return listeErreur;
 
     }
 

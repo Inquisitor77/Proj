@@ -28,4 +28,8 @@ public class ContactTel {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
+    public String toString(){
+        return nom;
+    }
 }
