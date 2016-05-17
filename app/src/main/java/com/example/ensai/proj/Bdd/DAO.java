@@ -19,6 +19,35 @@ import java.util.Date;
  */
 public class DAO {
 
+    public static Long compteur;
+
+    public static void initCompteur(Context context){
+
+        Long val = 0L;
+
+        SQLiteOpenHelper helper = new OpenHelper(context);
+        SQLiteDatabase base = helper.getReadableDatabase();
+
+        Cursor curseur = base.rawQuery("SELECT * FROM Evenement",
+                new String[]{});
+
+        int nblignes = curseur.getCount();
+        while (curseur.moveToNext()){
+            Long idEvenement = curseur.getLong(0);
+            if (idEvenement>val){
+                compteur = idEvenement;
+
+            }
+
+        }
+
+        base.close();
+        helper.close();
+
+
+
+    }
+
 
     public static void insertEvenement(Context context, String nom, String description, int mYear, int mMonth, int mDay, int heure, int minutes){
 
@@ -26,14 +55,16 @@ public class DAO {
         SQLiteDatabase base = helper.getWritableDatabase();
 
         SQLiteStatement rqt = base.compileStatement("INSERT INTO Evenement " +
-                "(nom, description, mYear, mMonth, mDayn, heure, minutes) VALUES(?,?,?,?,?,?,?)");
-        rqt.bindString(1,nom);
-        rqt.bindString(2, description);
-        rqt.bindLong(3, mYear);
-        rqt.bindLong(4, mMonth);
-        rqt.bindLong(5, mDay);
-        rqt.bindLong(6, heure);
-        rqt.bindLong(7, minutes);
+                "(idEvenement, nom, description, mYear, mMonth, mDayn, heure, minutes) VALUES(?,?,?,?,?,?,?,?)");
+        compteur = compteur + 1;
+        rqt.bindLong(1,compteur);
+        rqt.bindString(2,nom);
+        rqt.bindString(3, description);
+        rqt.bindLong(4, mYear);
+        rqt.bindLong(5, mMonth);
+        rqt.bindLong(6, mDay);
+        rqt.bindLong(7, heure);
+        rqt.bindLong(8, minutes);
 
         rqt.execute();
         base.close();
