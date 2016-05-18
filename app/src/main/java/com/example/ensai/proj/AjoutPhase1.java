@@ -3,6 +3,7 @@ package com.example.ensai.proj;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.example.ensai.proj.Bdd.DAO;
 
 import java.util.Calendar;
 
@@ -19,7 +22,7 @@ public class AjoutPhase1 extends AppCompatActivity {
     String descrip;
     EditText txtDate;
     EditText txtTime;
-    private int mYear, mMonth, mDay,mHour, mMinute;
+    private int mYear, mMonth, mDay, mHour, mMinute;
 
 
     @Override
@@ -40,6 +43,11 @@ public class AjoutPhase1 extends AppCompatActivity {
         //Toast.makeText(this, blabla, Toast.LENGTH_SHORT).show();
         //String blabla= mHour+" " +mMinute;
         //Toast.makeText(this, blabla, Toast.LENGTH_SHORT).show();
+
+        DAO.insertEvenement(this, nom, descrip, mYear, mMonth, mDay,mHour,mMinute);
+
+        Intent intent = new Intent(AjoutPhase1.this, AjoutPhase2.class);
+        startActivity(intent);
 
     }
 
