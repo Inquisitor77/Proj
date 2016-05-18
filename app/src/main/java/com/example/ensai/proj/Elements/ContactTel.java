@@ -5,10 +5,12 @@ package com.example.ensai.proj.Elements;
  */
 public class ContactTel {
 
+    String idTel;
     String nom;
     String numero;
 
-    public ContactTel(String nom, String numero) {
+    public ContactTel(String idTel, String nom, String numero) {
+        this.idTel = idTel;
         this.nom = nom;
         this.numero = numero;
     }
@@ -31,5 +33,13 @@ public class ContactTel {
 
     public String toString(){
         return nom;
+    }
+
+    public String getIdTel() {
+        return idTel;
+    }
+
+    public void setIdTel(String idTel) {
+        this.idTel = idTel;
     }
 }

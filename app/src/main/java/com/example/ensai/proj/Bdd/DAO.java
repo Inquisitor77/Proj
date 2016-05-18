@@ -19,7 +19,7 @@ import java.util.Date;
  */
 public class DAO {
 
-    public static Long compteur;
+    public static Long compteur = 0L;
 
     public static void initCompteur(Context context){
 
@@ -55,8 +55,8 @@ public class DAO {
         SQLiteDatabase base = helper.getWritableDatabase();
 
         SQLiteStatement rqt = base.compileStatement("INSERT INTO Evenement " +
-                "(idEvenement, nom, description, mYear, mMonth, mDayn, heure, minutes) VALUES(?,?,?,?,?,?,?,?)");
-        compteur = compteur + 1;
+                "(idEvenement, nom, description, mYear, mMonth, mDay, heure, minutes) VALUES(?,?,?,?,?,?,?,?)");
+        compteur = compteur + 1L;
         rqt.bindLong(1,compteur);
         rqt.bindString(2,nom);
         rqt.bindString(3, description);
@@ -82,7 +82,7 @@ public class DAO {
      * @param idTelephone
      */
 
-    public static void insertContact(Context context, long idEvenement, long  idTelephone){
+    public static void insertContact(Context context, long idEvenement, String  idTelephone){
 
         SQLiteOpenHelper helper = new OpenHelper(context);
         SQLiteDatabase base = helper.getWritableDatabase();
@@ -90,7 +90,7 @@ public class DAO {
         SQLiteStatement rqt = base.compileStatement("INSERT INTO Contact " +
                 "(idEvenement, idTelephone) VALUES(?,?)");
         rqt.bindLong(1, idEvenement);
-        rqt.bindLong(2, idTelephone);
+        rqt.bindString(2, idTelephone);
 
         rqt.execute();
         base.close();
@@ -172,7 +172,7 @@ public class DAO {
         while (curseur.moveToNext()){
             Long idContact = curseur.getLong(0);
             //pas besoin de l'idEvenement, on l'a dans les parametre de la fonction
-            Long idTelephone = curseur.getLong(2);
+            String idTelephone = curseur.getString(2);
 
             Contact elem = new Contact(idContact,idEvenement,idTelephone);
             liste.add(elem);
@@ -226,6 +226,18 @@ public class DAO {
         base.rawQuery("DELETE FROM SmsAuto WHERE idEvenement =?"
                 , new String[]{idEvenement.toString()});
         base.rawQuery("DELETE FROM Evenement WHERE idEvenement =?"
+                , new String[] {idEvenement.toString() });
+
+        base.close();
+        helper.close();
+    }
+
+    public static void renouvellerContacts(Context context, Long idEvenement){
+
+        SQLiteOpenHelper helper = new OpenHelper(context);
+        SQLiteDatabase base = helper.getWritableDatabase();
+
+        base.rawQuery("DELETE FROM Contact WHERE idEvenement =?"
                 , new String[] {idEvenement.toString() });
 
         base.close();

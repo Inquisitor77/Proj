@@ -46,7 +46,8 @@ public class AjoutPhase1 extends AppCompatActivity {
 
         DAO.insertEvenement(this, nom, descrip, mYear, mMonth, mDay,mHour,mMinute);
 
-        Intent intent = new Intent(AjoutPhase1.this, AjoutPhase2.class);
+        Intent intent = new Intent(AjoutPhase1.this, SelectionContacts.class);
+        intent.putExtra("idEvenement", DAO.compteur);
         startActivity(intent);
 
     }

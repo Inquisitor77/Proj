@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ensai.proj.Bdd.DAO;
 import com.example.ensai.proj.Bdd.ListeContactsTel;
 import com.example.ensai.proj.Elements.ContactTel;
 
@@ -17,6 +18,8 @@ public class Acceuil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DAO.initCompteur(this);
+
     }
 
     public void creer (View V){

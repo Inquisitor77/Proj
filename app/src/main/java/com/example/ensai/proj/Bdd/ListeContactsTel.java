@@ -2,6 +2,7 @@ package com.example.ensai.proj.Bdd;
 
 import android.app.ListActivity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class ListeContactsTel extends ListActivity {
 
     public static ArrayList<ContactTel> listeContactsTel = new ArrayList<ContactTel>();
+    public static ArrayList<Contact> listeEvenementActif = new ArrayList<Contact>();
 
     public void onCreate() {
 
@@ -41,12 +43,17 @@ public class ListeContactsTel extends ListActivity {
                             new String[]{id}, null);
                     while (pCur.moveToNext()) {
                         String tel = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                        listeContactsTel.add( new ContactTel(nom, tel));
+                        listeContactsTel.add( new ContactTel(id, nom, tel));
                     }
                     pCur.close();
                 }
             }
         }
+
+    }
+
+    public static void chargerContactEvenement(Context context, Long idEvenement){
+        listeEvenementActif = DAO.selectListeContact(context, idEvenement);
 
     }
 

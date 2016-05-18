@@ -7,9 +7,9 @@ public class Contact {
 
     Long idContact;
     Long idEvenement;
-    Long idTelephone;
+    String idTelephone;
 
-    public Contact(Long idContact, Long idEvenement, Long idTelephone) {
+    public Contact(Long idContact, Long idEvenement, String idTelephone) {
         this.idContact = idContact;
         this.idEvenement = idEvenement;
         this.idTelephone = idTelephone;
@@ -34,11 +34,11 @@ public class Contact {
         this.idEvenement = idEvenement;
     }
 
-    public Long getIdTelephone() {
+    public String getIdTelephone() {
         return idTelephone;
     }
 
-    public void setIdTelephone(Long idTelephone) {
+    public void setIdTelephone(String idTelephone) {
         this.idTelephone = idTelephone;
     }
 }

@@ -5,6 +5,7 @@
     <string name="heure_even">Heure de l evenement</string>
     <string name="descrip_even">Description de l evenement</string>
     <string name="valid">Valider</string>
+    <string name="retour">Retour</string>
     <string name="text_bouton1">Creer un evenement</string>
     <string name="text_bouton2">Guide d utilisation</string>
     <string name="nom">Nom :   </string>
