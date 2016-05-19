@@ -6,9 +6,11 @@
     <string name="descrip_even">Description de l evenement</string>
     <string name="valid">Valider</string>
     <string name="retour">Retour</string>
+    <string name="quitter">Quitter</string>
     <string name="text_bouton1">Creer un evenement</string>
     <string name="text_bouton2">Guide d utilisation</string>
     <string name="nom">Nom :   </string>
+    <string name="date">Date :   </string>
 
 
     <string name="aide">Ceci est le manuel d utilisation de l application au cas ou vous seriez pas tres malin</string>

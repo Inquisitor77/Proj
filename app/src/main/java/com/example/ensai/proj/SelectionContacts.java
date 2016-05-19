@@ -20,6 +20,7 @@ public class SelectionContacts extends AppCompatActivity {
     Button bouton;
     ListView liste;
     Long idEvenement;
+    ArrayAdapter<ContactTel> adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class SelectionContacts extends AppCompatActivity {
         bouton = (Button) findViewById(R.id.boutonValid2);
         liste = (ListView) findViewById(R.id.listeContact);
         liste.setClickable(true);
-        ArrayAdapter<ContactTel> adapter = new ArrayAdapter<ContactTel>(this,android.R.layout.simple_list_item_1,android.R.id.text1, ListeContactsTel.listeContactsTel);
+        adapter = new ArrayAdapter<ContactTel>(this,android.R.layout.simple_list_item_1,android.R.id.text1, ListeContactsTel.listeContactsTel);
         liste.setAdapter(adapter);
 
 
@@ -62,6 +63,18 @@ public class SelectionContacts extends AppCompatActivity {
     public void confirmerContacts(View v){
         ArrayList<ContactTel> newListe = new ArrayList<ContactTel>();
         DAO.renouvellerContacts(this,idEvenement);
+
+        for (int i = 0; i<adapter.getCount();i++){
+            if(liste.isItemChecked(i)){
+                DAO.insertContact(this,idEvenement,adapter.getItem(i).getIdTel());
+            }
+        }
+        ListeContactsTel.chargerContactEvenement(this,idEvenement);
+
+        Intent intentSortie = new Intent(this, Evenement.class);
+        intentSortie.putExtra("idEvenement", DAO.compteur);
+        startActivity(intentSortie);
+        finish();
     }
 
 }
