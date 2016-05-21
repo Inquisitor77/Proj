@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -44,11 +45,16 @@ public class AjoutPhase1 extends AppCompatActivity {
         //String blabla= mHour+" " +mMinute;
         //Toast.makeText(this, blabla, Toast.LENGTH_SHORT).show();
 
+        nom = ((EditText) findViewById(R.id.nom)).getText().toString();
+        descrip = ((EditText) findViewById(R.id.description)).getText().toString();
         DAO.insertEvenement(this, nom, descrip, mYear, mMonth, mDay,mHour,mMinute);
-
-        Intent intent = new Intent(AjoutPhase1.this, SelectionContacts.class);
+        Log.i("AjoutPhase1", "BDD");
+        Intent intent = new Intent(this, SelectionContacts.class);
         intent.putExtra("idEvenement", DAO.compteur);
         startActivity(intent);
+        Log.i("AjoutPhase1", "intent");
+        finish();
+        Log.i("AjoutPhase1", "finish");
 
     }
 

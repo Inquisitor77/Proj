@@ -158,6 +158,35 @@ public class DAO {
     }
 
 
+    public static Evenement selectEvenement(Context context,Long idEvenement) {
+
+        Evenement even = new Evenement();
+
+        SQLiteOpenHelper helper = new OpenHelper(context);
+        SQLiteDatabase base = helper.getReadableDatabase();
+
+        Cursor curseur = base.rawQuery("SELECT * FROM Evenement WHERE idEvenement =?",
+                new String[]{idEvenement.toString()});
+
+        int nblignes = curseur.getCount();
+        while (curseur.moveToNext()){
+            String nom = curseur.getString(1);
+            String description = curseur.getString(2);
+            int mYear = curseur.getInt(3);
+            int mMonth = curseur.getInt(4);
+            int mDay = curseur.getInt(5);
+            int heure = curseur.getInt(6);
+            int minutes = curseur.getInt(7);
+            even = new Evenement(idEvenement,nom,description,mYear,mMonth,mDay,heure,minutes);
+        }
+
+        base.close();
+        helper.close();
+
+        return even;
+    }
+
+
     public static ArrayList<Contact> selectListeContact(Context context, Long idEvenement) {
 
         ArrayList<Contact> liste = new ArrayList<Contact>();
@@ -201,10 +230,10 @@ public class DAO {
             //idEvenement
             String text = curseur.getString(2);
             int mYear = curseur.getInt(3);
-            int mMonth = curseur.getInt(3);
-            int mDay = curseur.getInt(3);
-            int heure = curseur.getInt(3);
-            int minutes = curseur.getInt(3);
+            int mMonth = curseur.getInt(4);
+            int mDay = curseur.getInt(5);
+            int heure = curseur.getInt(6);
+            int minutes = curseur.getInt(7);
 
             SmsAuto elem = new SmsAuto(idSms,idEvenement,text,mYear,mMonth,mDay,heure,minutes);
             liste.add(elem);

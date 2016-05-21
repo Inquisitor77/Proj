@@ -1,5 +1,7 @@
 package com.example.ensai.proj.Elements;
 
+import com.example.ensai.proj.R;
+
 import java.sql.Time;
 import java.util.Date;
 
@@ -29,6 +31,7 @@ public class Evenement {
     }
 
     public Evenement() {
+        this.nom = "error";
     }
 
     public Long getIdEvenement() {
@@ -93,5 +96,9 @@ public class Evenement {
 
     public void setMinutes(int minutes) {
         this.minutes = minutes;
+    }
+
+    public String toString(){
+        return nom;
     }
 }

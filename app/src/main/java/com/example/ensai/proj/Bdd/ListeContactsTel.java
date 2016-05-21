@@ -25,9 +25,8 @@ public class ListeContactsTel extends ListActivity {
     public static ArrayList<ContactTel> listeContactsTel = new ArrayList<ContactTel>();
     public static ArrayList<Contact> listeEvenementActif = new ArrayList<Contact>();
 
-    public void onCreate() {
+    public static void chargementContactsTel(ContentResolver cr) {
 
-        ContentResolver cr = getContentResolver();
         Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
                 null, null, null, null);
         if (cur.getCount() > 0) {
@@ -49,6 +48,7 @@ public class ListeContactsTel extends ListActivity {
                 }
             }
         }
+        cur.close();
 
     }
 

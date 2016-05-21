@@ -11,6 +11,15 @@
     <string name="text_bouton2">Guide d utilisation</string>
     <string name="nom">Nom :   </string>
     <string name="date">Date :   </string>
+    <string name="description">Description :   </string>
+    <string name="probleme">Erreur, veuillez reessayer</string>
+    <string name="problemeEven">Evenement non charge</string>
+
+    <string-array name="options">
+        <item>Modification des invites</item>
+        <item>Envoi de sms</item>
+        <item>Fin de l Evenement</item>
+    </string-array>
 
 
     <string name="aide">Ceci est le manuel d utilisation de l application au cas ou vous seriez pas tres malin</string>

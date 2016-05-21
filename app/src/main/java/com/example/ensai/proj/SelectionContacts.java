@@ -1,6 +1,7 @@
 package com.example.ensai.proj;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,7 @@ public class SelectionContacts extends AppCompatActivity {
         idEvenement = intent.getLongExtra("idEvenement", -1);
         bouton = (Button) findViewById(R.id.boutonValid2);
         liste = (ListView) findViewById(R.id.listeContact);
+        liste.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         liste.setClickable(true);
         adapter = new ArrayAdapter<ContactTel>(this,android.R.layout.simple_list_item_1,android.R.id.text1, ListeContactsTel.listeContactsTel);
         liste.setAdapter(adapter);
@@ -51,8 +53,13 @@ public class SelectionContacts extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(liste.isItemChecked(position)){
                     liste.setItemChecked(position,false);
+                    view.setBackgroundColor(Color.WHITE);
                 }else{
                     liste.setItemChecked(position,true);
+                    liste.setItemChecked(position, true);
+                    view.setBackgroundColor(Color.BLUE);
+
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -71,7 +78,7 @@ public class SelectionContacts extends AppCompatActivity {
         }
         ListeContactsTel.chargerContactEvenement(this,idEvenement);
 
-        Intent intentSortie = new Intent(this, Evenement.class);
+        Intent intentSortie = new Intent(this, EvenementGestion.class);
         intentSortie.putExtra("idEvenement", DAO.compteur);
         startActivity(intentSortie);
         finish();
