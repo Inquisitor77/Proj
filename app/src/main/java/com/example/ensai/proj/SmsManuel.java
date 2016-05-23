@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class SmsManuel extends AppCompatActivity {
 
     EditText t;
+    ArrayList<ContactTel> listeSortie = new ArrayList<ContactTel>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class SmsManuel extends AppCompatActivity {
 
     public void envoi(View v){
 
-        ArrayList<ContactTel> listeSortie = new ArrayList<ContactTel>();
+
 
         if(t.getText().toString().isEmpty()){
 
@@ -48,8 +49,15 @@ public class SmsManuel extends AppCompatActivity {
             }
         }
 
-        Sms.envoiSmsGroupe(listeSortie,t.getText().toString());
+        new Thread(sms).start();
         finish();
 
     }
+
+    Runnable sms = new Runnable() {
+        public void run() {
+            Sms.envoiSmsGroupe(listeSortie,t.getText().toString());
+        }
+    };
+
 }

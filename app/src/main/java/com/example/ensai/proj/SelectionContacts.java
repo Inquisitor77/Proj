@@ -67,15 +67,19 @@ public class SelectionContacts extends AppCompatActivity {
                 //    ListeContactsTel.listeContactsTel.get(position).setSelected(true);
                 //     adapter.notifyDataSetChanged();
                 // }
-
+                    boolean val =false;
 
                     for (int i = 0; i < listeVal.size(); i++) {
                         for (int j = 0; j < ListeContactsTel.listeContactsTel.size(); j++) {
                             if (listeVal.get(i).getIdTel() == ListeContactsTel.listeContactsTel.get(j).getIdTel())
-                                listeVal.add(ListeContactsTel.listeContactsTel.get(position));
-                            Toast.makeText(SelectionContacts.this, listeVal.get(listeVal.size() - 1).getNom() + " ajoute aux invites", Toast.LENGTH_SHORT).show();
+                                val = true;
+
                         }
                     }
+               // if(val = false){
+                    listeVal.add(ListeContactsTel.listeContactsTel.get(position));
+                    Toast.makeText(SelectionContacts.this, listeVal.get(listeVal.size() - 1).getNom() + " ajoute aux invites", Toast.LENGTH_SHORT).show();
+              //  }
                 }
 
         });
