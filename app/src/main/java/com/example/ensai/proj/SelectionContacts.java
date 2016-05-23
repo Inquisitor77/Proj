@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.example.ensai.proj.Bdd.DAO;
 import com.example.ensai.proj.Bdd.ListeContactsTel;
 import com.example.ensai.proj.Elements.ContactTel;
+import com.example.ensai.proj.Metier.MyAdapter;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class SelectionContacts extends AppCompatActivity {
     Button bouton;
     ListView liste;
     Long idEvenement;
-    ArrayAdapter<ContactTel> adapter = null;
+    MyAdapter adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +32,18 @@ public class SelectionContacts extends AppCompatActivity {
         idEvenement = intent.getLongExtra("idEvenement", -1);
         bouton = (Button) findViewById(R.id.boutonValid2);
         liste = (ListView) findViewById(R.id.listeContact);
-        liste.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        liste.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         liste.setClickable(true);
-        adapter = new ArrayAdapter<ContactTel>(this,android.R.layout.simple_list_item_1,android.R.id.text1, ListeContactsTel.listeContactsTel);
+        adapter = new MyAdapter(this, R.layout.list_perso, ListeContactsTel.listeContactsTel);
         liste.setAdapter(adapter);
 
 
         for (int i =0; i<adapter.getCount();i++){
             for (int j = 0; j<ListeContactsTel.listeEvenementActif.size(); j++){
                 if(adapter.getItem(i).getIdTel().equals( ListeContactsTel.listeEvenementActif.get(j).getIdTelephone())){
-                  liste.setItemChecked(i,true);
+                  ListeContactsTel.listeContactsTel.get(j).setSelected(true);
+                    adapter.notifyDataSetChanged();
+
 
                 }
             }
@@ -52,13 +55,10 @@ public class SelectionContacts extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(liste.isItemChecked(position)){
-                    liste.setItemChecked(position,false);
-                    view.setBackgroundColor(Color.WHITE);
+                    ListeContactsTel.listeContactsTel.get(position).setSelected(false);
+                    adapter.notifyDataSetChanged();
                 }else{
-                    liste.setItemChecked(position,true);
-                    liste.setItemChecked(position, true);
-                    view.setBackgroundColor(Color.BLUE);
-
+                    ListeContactsTel.listeContactsTel.get(position).setSelected(true);
                     adapter.notifyDataSetChanged();
                 }
             }

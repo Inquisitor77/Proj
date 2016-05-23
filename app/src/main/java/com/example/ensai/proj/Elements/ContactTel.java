@@ -8,11 +8,16 @@ public class ContactTel {
     String idTel;
     String nom;
     String numero;
+    Boolean selected;
 
     public ContactTel(String idTel, String nom, String numero) {
         this.idTel = idTel;
         this.nom = nom;
         this.numero = numero;
+    }
+
+    public ContactTel(){
+
     }
 
     public String getNom() {
@@ -41,5 +46,13 @@ public class ContactTel {
 
     public void setIdTel(String idTel) {
         this.idTel = idTel;
+    }
+
+    public Boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
     }
 }
