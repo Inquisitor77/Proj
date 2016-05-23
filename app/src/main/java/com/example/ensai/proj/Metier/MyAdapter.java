@@ -43,38 +43,43 @@ public class MyAdapter extends ArrayAdapter<ContactTel> {
         ViewHolder holder = null;
         Log.v("ConvertView", String.valueOf(position));
 
-        if (convertView == null) {
-           // LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            LayoutInflater vi = LayoutInflater.from(context);
-            convertView = vi.inflate(R.layout.list_perso, null);
-            //convertView = LayoutInflater.from(context).inflate(R.layout.list_perso, parent, false);
 
-            holder = new ViewHolder();
-            holder.code = (TextView) convertView.findViewById(R.id.code);
-            holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
-            convertView.setTag(holder);
+            if (convertView == null) {
+                // LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater vi = LayoutInflater.from(context);
+                convertView = vi.inflate(R.layout.list_perso, null);
+                //convertView = LayoutInflater.from(context).inflate(R.layout.list_perso, parent, false);
 
-            holder.name.setOnClickListener( new View.OnClickListener() {
-                public void onClick(View v) {
-                    CheckBox cb = (CheckBox) v ;
-                    ContactTel contact = (ContactTel) cb.getTag();
-                    contact.setSelected(cb.isChecked());
-                }
-            });
-        }
-        else {
-            holder = (ViewHolder) convertView.getTag();
-        }
+                holder = new ViewHolder();
+                holder.code = (TextView) convertView.findViewById(R.id.code);
+                holder.name = (CheckBox) convertView.findViewById(R.id.checkBox1);
+                convertView.setTag(holder);
 
-        ContactTel cont = liste.get(position);
-        holder.code.setText("");
-        holder.name.setText(cont.getNom());
-        holder.name.setChecked(cont.isSelected());
-        holder.name.setTag(cont);
+                holder.name.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        CheckBox cb = (CheckBox) v;
+                        ContactTel contact = (ContactTel) cb.getTag();
+                        contact.setSelected(cb.isChecked());
+                    }
+                });
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+
+            ContactTel cont = liste.get(position);
+            holder.code.setText("");
+            holder.name.setText(cont.getNom());
+            holder.name.setChecked(cont.isSelected());
+            holder.name.setTag(cont);
+
+
 
         return convertView;
 
     }
+
+
 
 }
 

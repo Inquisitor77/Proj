@@ -59,7 +59,7 @@ public class EvenementGestion extends AppCompatActivity {
                         break;
                     case 1:
                         //envoi sms
-                        Intent intentSms = new Intent(EvenementGestion.this, SelectionContacts.class);
+                        Intent intentSms = new Intent(EvenementGestion.this, SmsManuel.class);
                         intentSms.putExtra("idEvenement", idEvenement);
                         startActivity(intentSms);
                         break;
